@@ -1,0 +1,357 @@
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500&family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ============================================
+   ROOT DESIGN TOKENS
+   ============================================ */
+:root {
+  --color-forest:      #1e6b23;
+  --color-forest-dark: #17531c;
+  --color-sand:        #cfa05a;
+  --color-sand-light:  #f9f2e4;
+  --color-terracotta:  #d4532a;
+  --color-gold:        #f59e0b;
+  --color-cream:       #FAF7F2;
+  --color-warmwhite:   #FEFCF8;
+  --color-text-primary: #1a1a1a;
+  --color-text-muted:   #6b6b6b;
+  --font-serif:  'Cormorant Garamond', Georgia, serif;
+  --font-sans:   'Inter', system-ui, sans-serif;
+  --font-display:'Playfair Display', serif;
+  --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  --shadow-warm:   0 4px 24px rgba(163, 120, 60, 0.12);
+  --shadow-forest: 0 4px 24px rgba(30, 107, 35, 0.12);
+}
+
+/* ============================================
+   BASE RESET & TYPOGRAPHY
+   ============================================ */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  font-family: var(--font-sans);
+  background-color: var(--color-warmwhite);
+  color: var(--color-text-primary);
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+
+/* ============================================
+   CUSTOM SCROLLBAR
+   ============================================ */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: var(--color-cream);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--color-forest);
+  border-radius: 999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-forest-dark);
+}
+
+/* ============================================
+   SELECTION STYLES
+   ============================================ */
+::selection {
+  background-color: rgba(30, 107, 35, 0.15);
+  color: var(--color-forest-dark);
+}
+
+/* ============================================
+   TYPOGRAPHY SCALE
+   ============================================ */
+.font-display { font-family: var(--font-display); }
+.font-serif   { font-family: var(--font-serif); }
+
+h1, h2, h3 {
+  font-family: var(--font-display);
+  line-height: 1.15;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+}
+
+/* ============================================
+   GLOBAL COMPONENTS
+   ============================================ */
+
+/* Buttons */
+.btn-primary {
+  @apply inline-flex items-center justify-center gap-2 px-7 py-3.5 rounded-full
+         bg-forest-700 text-white font-sans font-medium text-sm tracking-wide
+         shadow-forest transition-all duration-300
+         hover:bg-forest-800 hover:shadow-forest-lg hover:-translate-y-0.5
+         active:translate-y-0 active:shadow-forest;
+}
+
+.btn-secondary {
+  @apply inline-flex items-center justify-center gap-2 px-7 py-3.5 rounded-full
+         border-2 border-forest-700 text-forest-700 font-sans font-medium text-sm tracking-wide
+         transition-all duration-300
+         hover:bg-forest-700 hover:text-white hover:-translate-y-0.5
+         active:translate-y-0;
+}
+
+.btn-terracotta {
+  @apply inline-flex items-center justify-center gap-2 px-7 py-3.5 rounded-full
+         bg-terracotta-500 text-white font-sans font-medium text-sm tracking-wide
+         shadow-[0_4px_24px_rgba(212,83,42,0.25)] transition-all duration-300
+         hover:bg-terracotta-600 hover:shadow-[0_8px_48px_rgba(212,83,42,0.35)] hover:-translate-y-0.5
+         active:translate-y-0;
+}
+
+.btn-ghost {
+  @apply inline-flex items-center justify-center gap-2 px-6 py-3 rounded-full
+         text-forest-700 font-sans font-medium text-sm tracking-wide
+         transition-all duration-300 hover:bg-forest-50
+         active:bg-forest-100;
+}
+
+/* Cards */
+.card {
+  @apply bg-white rounded-2xl shadow-card border border-sand-100/50
+         transition-all duration-300 hover:shadow-card-hover hover:-translate-y-1;
+}
+
+.card-glass {
+  @apply backdrop-blur-md bg-white/70 rounded-2xl border border-white/60
+         shadow-[0_4px_32px_rgba(0,0,0,0.08)] transition-all duration-300;
+}
+
+/* Section containers */
+.section-container {
+  @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+}
+
+.section-padding {
+  @apply py-20 md:py-28;
+}
+
+/* Badge */
+.badge {
+  @apply inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full
+         text-xs font-medium tracking-wide font-sans;
+}
+.badge-forest {
+  @apply badge bg-forest-50 text-forest-700 border border-forest-200;
+}
+.badge-sand {
+  @apply badge bg-sand-50 text-sand-700 border border-sand-200;
+}
+.badge-terracotta {
+  @apply badge bg-terracotta-50 text-terracotta-700 border border-terracotta-200;
+}
+
+/* ============================================
+   DECORATIVE ELEMENTS
+   ============================================ */
+.divider-leaf {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+.divider-leaf::before,
+.divider-leaf::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(30,107,35,0.3), transparent);
+}
+
+/* Organic blob shapes */
+.blob {
+  border-radius: 40% 60% 70% 30% / 40% 50% 60% 50%;
+}
+
+/* Gradient text */
+.text-gradient-forest {
+  background: linear-gradient(135deg, #1e6b23, #4fa14f);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.text-gradient-warm {
+  background: linear-gradient(135deg, #d4532a, #f59e0b);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ============================================
+   ANIMATIONS
+   ============================================ */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes leafFloat {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  25%       { transform: translateY(-15px) rotate(3deg); }
+  75%       { transform: translateY(-8px) rotate(-2deg); }
+}
+
+@keyframes pulseGlow {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(30, 107, 35, 0.2); }
+  50%       { box-shadow: 0 0 0 20px rgba(30, 107, 35, 0); }
+}
+
+@keyframes shimmer {
+  0%   { background-position: -200% 0; }
+  100% { background-position:  200% 0; }
+}
+
+@keyframes scrollDown {
+  0%   { opacity: 1; transform: translateY(0); }
+  100% { opacity: 0; transform: translateY(12px); }
+}
+
+.animate-leaf-float { animation: leafFloat 6s ease-in-out infinite; }
+.animate-pulse-glow { animation: pulseGlow 3s ease-in-out infinite; }
+.animate-scroll-down { animation: scrollDown 1.5s ease-in-out infinite; }
+
+/* ============================================
+   HERO VISUAL ELEMENTS
+   ============================================ */
+.hero-grain {
+  position: relative;
+}
+.hero-grain::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* ============================================
+   LEAF DECORATION SVG
+   ============================================ */
+.leaf-decoration {
+  position: absolute;
+  opacity: 0.08;
+  pointer-events: none;
+}
+
+/* ============================================
+   INSTAGRAM GRID
+   ============================================ */
+.instagram-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 4px;
+}
+
+@media (min-width: 640px) {
+  .instagram-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+@media (min-width: 1024px) {
+  .instagram-grid {
+    grid-template-columns: repeat(6, 1fr);
+    gap: 6px;
+  }
+}
+
+/* ============================================
+   TESTIMONIAL STYLES
+   ============================================ */
+.testimonial-card {
+  @apply relative bg-white rounded-2xl p-6 shadow-card border border-sand-100;
+}
+.testimonial-card::before {
+  content: '"';
+  position: absolute;
+  top: -12px;
+  left: 24px;
+  font-family: var(--font-serif);
+  font-size: 6rem;
+  line-height: 1;
+  color: var(--color-forest);
+  opacity: 0.12;
+}
+
+/* ============================================
+   FORM STYLES
+   ============================================ */
+.form-input {
+  @apply w-full px-4 py-3 rounded-xl border border-sand-200 bg-white
+         text-sm font-sans text-gray-800 placeholder-gray-400
+         transition-all duration-200 outline-none
+         focus:border-forest-400 focus:ring-2 focus:ring-forest-100
+         hover:border-sand-300;
+}
+
+.form-label {
+  @apply block text-sm font-medium text-gray-700 mb-1.5 font-sans;
+}
+
+.form-error {
+  @apply text-xs text-red-500 mt-1 font-sans;
+}
+
+/* ============================================
+   MOBILE MENU
+   ============================================ */
+.mobile-menu-enter {
+  animation: fadeInLeft 0.3s ease-out forwards;
+}
+
+/* ============================================
+   SMOOTH SCROLL OFFSET FOR FIXED NAV
+   ============================================ */
+[id] {
+  scroll-margin-top: 90px;
+}
+
+/* ============================================
+   LOADING SHIMMER
+   ============================================ */
+.skeleton {
+  background: linear-gradient(
+    90deg,
+    #f0ece4 25%,
+    #e8e2d8 50%,
+    #f0ece4 75%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 2s linear infinite;
+  border-radius: 8px;
+}
